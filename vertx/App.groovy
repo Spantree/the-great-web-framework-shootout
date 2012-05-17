@@ -1,8 +1,9 @@
-def webServerConf = [
-  port: 8080,
-  host: 'localhost'
-]
 
-// Start the web server, with the config we defined above
+container.with {
 
-container.deployVerticle('web-server', webServerConf);
+    // Start the db server.
+    deployVerticle('Database');
+    
+    // Start the web server, with the config we defined above
+    deployVerticle('WebServer.groovy');
+}
