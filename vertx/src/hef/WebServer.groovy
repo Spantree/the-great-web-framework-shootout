@@ -1,3 +1,4 @@
+package hef
 import groovy.json.JsonSlurper
 import groovy.text.GStringTemplateEngine
 import org.vertx.groovy.core.http.RouteMatcher
@@ -15,7 +16,7 @@ routeMatcher.get("/") { req ->
 }
 
 routeMatcher.get("/template") { req ->
-    def f = new File("web/template.gsp")
+    def f = new File("webroot/template.gsp")
     def binding = [message: '''
     Lorem ipsum dolor sit amet, consecteteur adipiscing elit nisi ultricies.
     Condimentum vel, at augue nibh sed. Diam praesent metus ut eros, sem
@@ -35,7 +36,7 @@ routeMatcher.get("/template") { req ->
 }
 
 routeMatcher.get("/sql") { req ->
-    def f = new File("web/sql.gsp")
+    def f = new File("webroot/sql.gsp")
     eb.send("db.fetch", null) { message ->
         payload = slurper.parseText(message.body)
         template = gste.createTemplate(f).make(payload)

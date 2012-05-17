@@ -1,9 +1,10 @@
+package hef
 
 container.with {
 
     // Start the db server.
-    deployVerticle('Database');
+   deployVerticle('Database.groovy');
     
-    // Start the web server, with the config we defined above
+    // Start the web server
     deployVerticle('WebServer.groovy');
 }
